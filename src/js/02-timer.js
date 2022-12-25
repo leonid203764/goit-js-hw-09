@@ -19,8 +19,10 @@ const options = {
     time_24hr: true,
     defaultDate: new Date(),
     minuteIncrement: 1,
-    onClose(selectedDates) {
-        if (selectedDates[0] < new Date()) {
+    onClose(selectedDates)
+  console.log(selectedDates[0]);
+  {
+        if (selectedDates[0] < Date.now()) {
             Notiflix.Notify.failure('Please choose a date in the future');
             startBtn.disabled = true;
         }
@@ -68,7 +70,7 @@ const options = {
   function updateClock () {
     timerId = setInterval(() =>{
         // Знаходимо різницю між майбутньою датою (обраною у input) та теперішньою, значення у секундах
-        const deltaTime = new Date(dataTime.value) - new Date();
+        const deltaTime = new Date(dataTime.value) - Date.now();
         startBtn.disabled = true;
         if (deltaTime >= 0) {
             // Об'єкт з днями, годинами, мінутами та секундами, значення яких обчислено за допомогою функції convertMs
